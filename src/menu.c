@@ -44,7 +44,7 @@ void manage_mouse_click_menu(sfRenderWindow *window, game_t *game)
         sfText_setColor(game->option_text.text, (sfColor) {nbr, nbr, nbr, nbb});
         if (game->event.type == sfEvtMouseButtonPressed &&
         sfMouse_isButtonPressed(sfMouseLeft) == sfTrue)
-            printf("OPTION\n");
+            my_putstr("OPTION\n");
     } else {
         sfText_setColor(game->play_text.text, (sfColor) {nbb, nbb, nbb, nbb});
         sfText_setColor(game->exit_text.text, (sfColor) {nbb, nbb, nbb, nbb});

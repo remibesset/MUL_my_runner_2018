@@ -47,7 +47,6 @@ char *load_file_in_memo(char const *filepath, game_t *game)
         my_strlen(conv_i_str(game->high_score.score / 4)));
     read(fd, buff, size);
     buff = my_strcat("HIGH SCORE: ", buff);
-    printf("buff = %s\n", buff);
     close(fd);
     return (buff);
 }
