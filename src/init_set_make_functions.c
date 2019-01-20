@@ -44,6 +44,7 @@ void make_destroy(game_t game)
     sfSprite_destroy(game.ground.sprite);
     sfSprite_destroy(game.perso.sprite);
     sfMusic_destroy(game.perso.sound_hit);
+    sfMusic_stop(game.song);
     sfMusic_destroy(game.song);
     sfText_destroy(game.name_game.text);
     sfText_destroy(game.play_text.text);

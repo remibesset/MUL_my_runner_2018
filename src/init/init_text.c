@@ -11,6 +11,7 @@ text_score_t init_text_name_game(game_t *game)
 {
     text_score_t text_name_game;
 
+    sfMusic_play(game->song);
     text_name_game.text = sfText_create();
     text_name_game.pos_text.x = 50;
     text_name_game.pos_text.y = 30;

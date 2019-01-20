@@ -16,8 +16,6 @@ void draw_the_new_life(game_t *game)
     sfText_setString(game->vie_text.text, strcat_char);
     free(strcat_char);
     free(score_to_char);
-    sfMusic_setLoop(game->song, sfTrue);
-    sfMusic_play(game->song);
 }
 
 void draw_map(game_t *game)

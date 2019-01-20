@@ -13,8 +13,8 @@ int set_value(game_t *game, int run)
     game->window = (run != 2) ? sfRenderWindow_create(game->mode, "MyRunner", \
 sfDefaultStyle, NULL) : game->window;
     game->menu = (run != 2) ? 1 : game->menu;
-    game->song = (run != 2) ? sfMusic_createFromFile("includes/music/\
-music.ogg") : game->song;
+    if (run != 2)
+        game->song = sfMusic_createFromFile("includes/music/music.ogg");
     game->win = 0;
     game->speed_increase = 0;
     game->run = run;
