@@ -53,5 +53,4 @@ void draw_text(game_t *game)
     sfRenderWindow_drawText(game->window, game->vie_text.text, NULL);
     free(strcat_char);
     free(game->score.text_char);
-
 }
