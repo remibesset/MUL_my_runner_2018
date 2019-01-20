@@ -14,6 +14,7 @@ SRC = src/main.c \
 	src/load_score.c \
 	src/init_text_music.c \
 	src/init_texture_sprite.c \
+	src/load_map.c \
 
 CFLAGS = -g3
 

@@ -24,7 +24,7 @@ int my_strlen(char const *str)
     return (i);
 }
 
-const char *my_revstr(const char *str)
+char *my_revstr(char *str)
 {
     int i = 0;
     int max = my_strlen(str);

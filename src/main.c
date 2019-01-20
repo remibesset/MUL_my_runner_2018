@@ -24,8 +24,12 @@ int main(int ac, char **ag)
         my_putstr("USER INTERACTIONS\n");
         my_putstr("\tSPACE_KEY \tjump.");
     } else if (ac == 2 && ag[1][0] == '-' && ag[1][1] == 'i') {
-        game_mode(0);
-    } else {
-        game_mode(1);
+        game_mode(0, ag[1]);
     }
+    if (ac == 2 && ag[1][0] != '-') {
+        game_mode(1, ag[1]);
+    } else {
+        return (84);
+    }
+    return (0);
 }

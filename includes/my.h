@@ -59,12 +59,28 @@ typedef struct text_score_a
     int score;
 } text_score_t;
 
+typedef struct sprite_map
+{
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f pos;
+    sfVector2f pos_base;
+    int type;
+} sprite_map_t;
+
 typedef struct init_all
 {
     sfRenderWindow *window;
-    sfEvent event;
+    sfEvent *event;
+    sfEvent e_menu;
     sfVideoMode mode;
     int menu;
+    char *filepath;
+    int nb_vie;
+    int id_obstacle;
+    int slide;
+    int jump;
+    sprite_map_t **map;
     init_sp_tex_t background;
     init_sp_tex_t background_soleil;
     init_sp_tex_t background_ville3;
@@ -78,33 +94,17 @@ typedef struct init_all
     text_score_t play_text;
     text_score_t exit_text;
     text_score_t option_text;
+    text_score_t resume;
     text_score_t score;
     text_score_t high_score;
+    text_score_t vie_text;
+    init_sp_tex_t bg_menu;
+    text_score_t menu_pause;
 }game_t;
-
-// typedef struct init_game
-// {
-//     sfRenderWindow *window;
-//     sfEvent event;
-//     sfVideoMode mode;
-//     sfIntRect rect;
-//     sfVector2f position;
-//     text_score_t text_s;
-//     text_score_t text_highs;
-//     init_sp_tex_t bg_sky;
-//     init_sp_tex_t bg_stars;
-//     int run;
-//     int i;
-//     int die;
-//     float vitesse;
-//     float speed_anim;
-//     int health;
-//     int direction;
-// } game_t;
 
 void my_putchar(char c);
 int my_strlen(char const *str);
-const char *my_revstr(const char *str);
+char *my_revstr(char *str);
 int get_the_sign(char const *str);
 char *my_getnbr(char const *str);
 void my_putstr(char *str);
@@ -112,13 +112,14 @@ void my_putstr_i(char *str, int max);
 int my_put_nbr_print(int nb);
 int my_put_nbr(int nb);
 void close_window(game_t game, sfEvent event);
-int analyse_events(sfRenderWindow *window, game_t game);
+void analyse_events(game_t *game);
 char *conv_i_str(int nbr);
-int manage_mouse_click(sfRenderWindow *window, game_t *game,
-game_t game_s);
+int manage_mouse_click(game_t *game);
 void set_value(game_t *game, int run);
 void draw_all(sfRenderWindow *window, game_t *game);
-void draw_menu(game_t *game);
+void draw_menu1(game_t *game);
+void draw_menu2(game_t *game);
+void draw_the_new_life(game_t *game);
 void analyse_events_menu(game_t *game);
 init_sp_tex_t init_background_sprite(void);
 init_sp_tex_t init_background_soleil(void);
@@ -131,26 +132,38 @@ init_sp_tex_t init_sprite_ground(void);
 player_init_t init_sprite_perso(void);
 text_score_t init_text_name_game(game_t *game);
 text_score_t init_text_play_text(game_t *game);
+text_score_t init_text_resume_text(game_t *game);
 text_score_t init_text_exit_text(game_t *game);
 text_score_t init_text_option_text(game_t *game);
 text_score_t init_text_score(game_t *game);
 text_score_t init_text_high_score(game_t *);
+text_score_t init_text_vie(game_t *game);
+text_score_t init_text_menu_game(game_t *game);
+init_sp_tex_t init_background_menu_sprite(void);
+void manage_mouse_click_menu2(sfRenderWindow *window, game_t *game);
+int my_strlen_liste(sprite_map_t **list);
+int my_strlen_char(char **list);
+char **my_realloc_charchar(char **list, char *name);
+sprite_map_t **my_realloc_struct(sprite_map_t **list, sprite_map_t *name);
+sprite_map_t *new_object(int i, int j, int num, game_t *);
+sprite_map_t **load_file(char *filepath, game_t *);
+sprite_map_t **complete_list(char **buff, sprite_map_t **list, game_t *);
+void make_the_slide(game_t *game);
+void make_jump_perso(game_t *game);
+
 void do_paralax(init_sp_tex_t *background, game_t *game);
 void make_run_perso(game_t *game);
 void set_texture_sprite(game_t *game);
 void target_mouse(game_t *game);
 void make_destroy(game_t game);
 char *load_file_in_memo(char const *filepath, game_t *game);
-void do_animation(make_clock_t *clockanim, game_t *game, int *i,
-sfIntRect *rect);
-void do_position(make_clock_t *clockpos, game_t *game);
 void target_mouse(game_t *game);
 char *my_strcpy(char *dest, char const *src, int i);
 char *my_strcat(char const *a, char const *b);
 void game_over(game_t *game, sfVector2f pos_defeat);
 int char_to_int(char *score);
 void init_music(game_t *game);
-int game_mode(int);
+int game_mode(int, char *);
 int menu(int);
 int main(int ac, char **ag);
 
