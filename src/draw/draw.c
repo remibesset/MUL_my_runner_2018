@@ -37,7 +37,6 @@ void draw_menu1(game_t *game)
 
 void draw_menu2(game_t *game)
 {
-    //sfRenderWindow_drawSprite(game->window, game->bg_menu.sprite, NULL);
     sfRenderWindow_drawText(game->window, game->menu_pause.text, NULL);
     sfRenderWindow_drawText(game->window, game->resume.text, NULL);
     sfRenderWindow_drawText(game->window, game->exit_text.text, NULL);

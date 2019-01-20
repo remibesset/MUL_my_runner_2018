@@ -9,13 +9,12 @@
 
 int set_value(game_t *game, int run)
 {
-    if (run != 2) {
-        game->mode = (sfVideoMode) {1280, 768, 32};
-        game->window = sfRenderWindow_create(game->mode, "MyRunner", \
-        sfDefaultStyle, NULL);
-        game->menu = 1;
-    }
-    game->song = sfMusic_createFromFile("includes/music/music.ogg");
+    game->mode = (run != 2) ? (sfVideoMode) {1280, 768, 32} : game->mode;
+    game->window = (run != 2) ? sfRenderWindow_create(game->mode, "MyRunner", \
+sfDefaultStyle, NULL) : game->window;
+    game->menu = (run != 2) ? 1 : game->menu;
+    game->song = (run != 2) ? sfMusic_createFromFile("includes/music/\
+music.ogg") : game->song;
     game->win = 0;
     game->speed_increase = 0;
     game->run = run;
@@ -83,8 +82,6 @@ void set_scale(game_t *game)
 
 void set_pos_menu_2(game_t *game)
 {
-    sfMusic_setLoop(game->song, sfTrue);
-    sfMusic_play(game->song);
     game->exit_text.pos_text.x = game->mode.width / 2 - 190;
     game->exit_text.pos_text.y = game->mode.height / 2;
     sfText_setPosition(game->exit_text.text, game->exit_text.pos_text);
