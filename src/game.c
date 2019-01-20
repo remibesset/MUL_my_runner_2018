@@ -5,13 +5,7 @@
 ** my_hunter
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/System/Time.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "../includes/my.h"
-#include <SFML/Audio.h>
-
 void make_run_perso(game_t *game)
 {
     if (game->perso.pos.x > 100)
@@ -36,8 +30,8 @@ void do_paralax(init_sp_tex_t *background, game_t *game)
     background->time_st = sfClock_getElapsedTime(background->clock_st);
     background->second = background->time_st.microseconds / 1000000.0;
     if (background->second >= background->max_sec) {
-        background->pos.x -= background->speed;
-        background->pos2.x -= background->speed;
+        background->pos.x -= background->speed + game->speed_increase;
+        background->pos2.x -= background->speed + game->speed_increase;
         sfSprite_setPosition(background->sprite, background->pos);
         sfSprite_setPosition(background->sprite2, background->pos2);
         sfClock_restart(background->clock_st);
@@ -46,23 +40,29 @@ void do_paralax(init_sp_tex_t *background, game_t *game)
         background->pos.x = size / 2 + 250;
     if (background->pos2.x <= (-size / 2) - 250)
         background->pos2.x = size / 2 + 250;
+    if (game->score.score % 400 == 200 && game->run == 0)
+        game->speed_increase += 0.01;
 }
 
 int game_mode(int mode, char *filepath)
 {
     game_t game;
 
-    game.filepath = filepath;
-    set_value(&game, 1);
+    game.filepath = (filepath[0] == '\0') ? "map.txt" : filepath;
+    if (set_value(&game, mode) == 84)
+        return (84);
     sfRenderWindow_setFramerateLimit(game.window, 120);
     while (sfRenderWindow_isOpen(game.window) == 1) {
         analyse_events_menu(&game);
-        if (game.menu != 2) {
+        if (game.menu != 2 && game.nb_vie > 0 && game.win == 0) {
             sfRenderWindow_clear(game.window, sfBlack);
             draw_all(game.window, &game);
-        }
-        else
+        } else if (game.menu == 2)
             draw_menu2(&game);
+        else
+            draw_defeat(&game, (game.win == 1) ? 0 : 1);
+        if (game.nb_vie > 0 && game.menu == 0 && game.win == 0)
+            draw_text(&game);
         sfRenderWindow_display(game.window);
     }
     make_destroy(game);

@@ -22,12 +22,14 @@ int main(int ac, char **ag)
         my_putstr("\t-i \t\t\tlaunch the game in infinity mode.\n");
         my_putstr("\t-h \t\t\tprint the usage and quit.\n");
         my_putstr("USER INTERACTIONS\n");
-        my_putstr("\tSPACE_KEY \tjump.");
+        my_putstr("\tSPACE_KEY \tjump.\n\tDOWN_KEY \tSLIDE.\n\tQ_KEY\t\
+        Quit.\n");
     } else if (ac == 2 && ag[1][0] == '-' && ag[1][1] == 'i') {
-        game_mode(0, ag[1]);
+        game_mode(0, "\0");
     }
     if (ac == 2 && ag[1][0] != '-') {
-        game_mode(1, ag[1]);
+        if (game_mode(1, ag[1]) == 84)
+            return (84);
     } else {
         return (84);
     }
