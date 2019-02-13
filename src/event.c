@@ -62,9 +62,9 @@ void make_jump_perso(game_t *game)
             change_font(game, "includes/images/player/nin_run.png", 0);
             game->jump = 0;
         }
-        sfSprite_setTextureRect(game->perso.sprite, game->perso.rect);
         sfClock_restart(game->perso.clock_st);
     }
+    sfSprite_setTextureRect(game->perso.sprite, game->perso.rect);
 }
 
 int manage_mouse_click(game_t *game)
@@ -82,6 +82,6 @@ int manage_mouse_click(game_t *game)
     game->win == 0) {
         game->slide = 1;
         change_font(game, "includes/images/player/nin_slide.png", 1);
-        //sfSprite_setTexture(game->perso.sprite, game->perso.texture, sfTrue);
+        sfSprite_setTexture(game->perso.sprite, game->perso.texture, sfTrue);
     }
 }
