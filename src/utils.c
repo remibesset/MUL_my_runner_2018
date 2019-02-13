@@ -19,7 +19,7 @@ char *my_strcpy(char *dest, char const *src, int i)
 
 char *my_strcat(char const *a, char const *b)
 {
-    char *new_char = malloc(sizeof(char) * (my_strlen(a) + my_strlen(b) + 1));
+    char *new_char = xmalloc(sizeof(char) * (my_strlen(a) + my_strlen(b) + 1));
 
     new_char = my_strcpy(new_char, a, 0);
     new_char = my_strcpy(new_char, b, my_strlen(a));
@@ -28,7 +28,7 @@ char *my_strcat(char const *a, char const *b)
 
 char *conv_i_str(int nbr)
 {
-    char *result = malloc(sizeof(char) * (11 + 1));
+    char *result = xmalloc(sizeof(char) * (11 + 1));
     int i = 0;
 
     if (nbr > 0) {

@@ -177,7 +177,7 @@ void make_jump_perso(game_t *game);
 void draw_text(game_t *game);
 void set_pos_menu_2(game_t *game);
 void init_first_change_font(game_t *game, char *filepath_font, int mode);
-
+void *xmalloc(int size);
 void do_paralax(init_sp_tex_t *background, game_t *game);
 void make_run_perso(game_t *game);
 void set_texture_sprite(game_t *game);

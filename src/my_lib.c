@@ -29,7 +29,7 @@ char *my_revstr(char *str)
     int i = 0;
     int max = my_strlen(str);
     int j = max - 1;
-    char *rev = malloc(sizeof(char) * (my_strlen(str) + 2));
+    char *rev = xmalloc(sizeof(char) * (my_strlen(str) + 2));
 
     while (i < max) {
         rev[i] = str[j];

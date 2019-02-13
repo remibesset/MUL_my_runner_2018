@@ -9,7 +9,7 @@
 
 char **my_realloc_charchar(char **list, char *name)
 {
-    char **new = malloc(sizeof(char *) * (my_strlen_char(list) + 2));
+    char **new = xmalloc(sizeof(char *) * (my_strlen_char(list) + 2));
     int i = 0;
     int j = 0;
 
@@ -25,7 +25,7 @@ char **my_realloc_charchar(char **list, char *name)
 
 sprite_map_t **my_realloc_struct(sprite_map_t **list, sprite_map_t *name)
 {
-    sprite_map_t **new = malloc(sizeof(sprite_map_t *) *\
+    sprite_map_t **new = xmalloc(sizeof(sprite_map_t *) *\
     (my_strlen_liste(list) + 2));
     int i = 0;
     int j = 0;
@@ -42,7 +42,7 @@ sprite_map_t **my_realloc_struct(sprite_map_t **list, sprite_map_t *name)
 
 sprite_map_t *new_object(int i, int j, int num, game_t *game)
 {
-    sprite_map_t *object_st = malloc(sizeof(sprite_map_t) * 1);
+    sprite_map_t *object_st = xmalloc(sizeof(sprite_map_t) * 1);
     char *src;
     int hauteur = 475;
 

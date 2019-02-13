@@ -9,7 +9,7 @@
 
 char *load_file_in_memo(char const *filepath, game_t *game)
 {
-    char *buff = malloc(sizeof(char) * (11 + 14 + 1));
+    char *buff = xmalloc(sizeof(char) * (11 + 14 + 1));
     int fd = open(filepath, O_RDWR);
     int j = 0;
 

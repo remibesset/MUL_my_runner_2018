@@ -75,11 +75,13 @@ int manage_mouse_click(game_t *game)
     game->win == 0) {
         game->jump = 1;
         change_font(game, "includes/images/player/nin_jump.png", 2);
+        sfSprite_setTexture(game->perso.sprite, game->perso.texture, sfTrue);
     }
     else if (game->e_menu.type == sfEvtKeyPressed && game->e_menu.key.code ==\
     sfKeyDown && game->slide == 0 && game->jump != 1 && game->nb_vie > 0 && \
     game->win == 0) {
         game->slide = 1;
         change_font(game, "includes/images/player/nin_slide.png", 1);
+        //sfSprite_setTexture(game->perso.sprite, game->perso.texture, sfTrue);
     }
 }

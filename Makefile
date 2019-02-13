@@ -24,6 +24,7 @@ SRC = src/main.c \
 	src/draw/draw2.c \
 	src/load_map.c \
 	src/utils.c \
+	src/utils2.c \
 
 CFLAGS = -g3
 

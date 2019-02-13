@@ -62,12 +62,13 @@ void draw_defeat(game_t *game, int mode)
 
 void draw_all(sfRenderWindow *window, game_t *game)
 {
+    sfRenderWindow_clear(game->window, sfBlack);
     draw_parallax(window, game);
     if (game->slide == 1)
         make_the_slide(game);
-    else if (game->jump == 1) {
+    else if (game->jump == 1)
         make_jump_perso(game);
-    } else
+    else
         make_run_perso(game);
     sfRenderWindow_drawSprite(window, game->perso.sprite, NULL);
     if (game->menu == 1) {
